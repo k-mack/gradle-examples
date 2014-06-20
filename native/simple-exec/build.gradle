@@ -1,0 +1,9 @@
+description = 'Simple C/C++ applications'
+
+apply plugin: 'c'
+apply plugin: 'cpp'
+
+executables {
+  c_main {}
+  cpp_main {}
+}

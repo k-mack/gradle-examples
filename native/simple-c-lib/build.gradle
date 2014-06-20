@@ -1,0 +1,28 @@
+description = 'A simple C library'
+
+apply plugin: 'c'
+
+libraries {
+  stringutils {
+    binaries.all {
+      if (toolChain in Gcc) {
+        cCompiler.args '-std=c11', '-Wall', '-O2'
+      }
+    }
+    binaries.withType(SharedLibraryBinary) {
+      cCompiler.define 'DLL_EXPORT'
+    }
+  }
+}
+
+executables {
+  tests {}
+}
+
+sources {
+  tests {
+    c {
+      lib libraries.stringutils
+    }
+  }
+}

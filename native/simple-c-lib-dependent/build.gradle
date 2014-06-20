@@ -1,0 +1,17 @@
+description = "A simple C project that depends on another's library"
+
+apply plugin: 'c'
+
+executables {
+  main {}
+}
+
+sources {
+  main {
+    c {
+      // This project can "see" the "simple-c-lib" project only because they
+      // are both traced back to the same root project (':')
+      lib project: ':native:simple-c-lib', library: 'stringutils'
+    }
+  }
+}

@@ -1,0 +1,49 @@
+description = 'A simple C application with variant output binaries'
+
+apply plugin: 'c'
+
+model {
+  platforms {
+    // Supported architectures:
+    // 'x86', 'i386', 'ia-32', 'x86_64', 'amd64', 'x64', 'x86-64', 'ia-64', 'ppc',
+    // 'ppc64', 'sparc', 'sparc32', 'sparc-v7', 'sparc-v8', 'sparc64', 'ultrasparc',
+    // 'sparc-v9', 'arm'
+    //
+    // Supported operating systems:
+    // 'windows', 'osx', 'mac os x', 'linux', 'solaris', 'sunos'
+    linux_x86_64 {
+      architecture 'x86_64'
+      operatingSystem 'linux'
+    }
+    windows_x86_64 {
+      architecture 'x86_64'
+      operatingSystem 'windows'
+    }
+    sparc {
+      architecture 'sparc'
+    }
+  }
+  buildTypes {
+    debug
+    release
+  }
+  flavors {
+    demo
+    paid
+  }
+}
+
+executables {
+  main {}
+}
+
+binaries.all {
+  if (flavor == flavors.demo) {
+    cCompiler.define 'NAME="Scoundrel"'
+  } else if (flavor == flavors.paid) {
+    cCompiler.define 'NAME="Valued Customer"'
+  }
+  if (buildType == buildTypes.debug) {
+    cCompiler.define 'DEBUG'
+  }
+}

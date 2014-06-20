@@ -1,0 +1,4 @@
+def nativeProjects = new File(settingsDir, 'native')
+nativeProjects.eachDir {
+  include "native:$it.name"
+}
