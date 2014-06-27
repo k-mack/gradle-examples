@@ -1,4 +1,16 @@
-def nativeProjects = new File(settingsDir, 'native')
-nativeProjects.eachDir {
-  include "native:$it.name"
+include 'native:simple-c-lib'
+include 'native:simple-c-lib-dependent'
+include 'native:simple-exec'
+include 'native:variants-c-exec'
+
+// Or use some Groovy code to programmatically find projects. The code below
+// avoids adding any hidden directories or "build" directories as projects. If
+// these directories were added by including every directory, Gradle wouldn't
+// break - it's just annoying seeing those directories listed as projects by
+// `./gradlew projects`
+def jvmProjects = new File(settingsDir, 'jvm')
+jvmProjects.eachDir {
+  if (it.name.charAt(0) == '.') {}
+  else if ("build".equals(it.name)) {}
+  else { include "jvm:$it.name" }
 }
