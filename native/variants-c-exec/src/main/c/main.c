@@ -4,7 +4,8 @@
 #define NAME "World"
 #endif
 
-int main(void) {
+int main(void)
+{
     printf("Hello, %s!\n", NAME);
 #ifdef DEBUG
     printf("Debugger: NAME=%s\n", NAME);
