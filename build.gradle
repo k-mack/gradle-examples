@@ -1,5 +1,5 @@
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.0-rc-1'
+  gradleVersion = '2.0-rc-2'
 }
 
 project('jvm').subprojects {
@@ -69,12 +69,12 @@ project('jvm:jni') {
     outputs.file outputFile
     doLast {
       outputFile.parentFile.mkdirs()
-        exec {
-          executable org.gradle.internal.jvm.Jvm.current().getExecutable('javah')
-            args '-o', outputFile
-            args '-classpath', sourceSets.main.output.classesDir
-            args 'example.jni.Util'
-        }
+      exec {
+        executable org.gradle.internal.jvm.Jvm.current().getExecutable('javah')
+          args '-o', outputFile
+          args '-classpath', sourceSets.main.output.classesDir
+          args 'example.jni.Util'
+      }
     }
   }
 
@@ -90,6 +90,8 @@ project('jvm:jni') {
       }
     }
   }
+
+  jniPlatformCExtractHeaders.dependsOn nativeHeaders
 
   model {
     platforms {
