@@ -117,6 +117,14 @@ get a binary, but when you run it you'll get:
 You can update `LD_LIBRARY_PATH` and do the same above or just run the
 `installMainExecutable` task.
 
+## Using IDEs
+Out-of-the-box Gradle will produce Eclipse and IntelliJ projects if told to (by
+applying the `eclipse` and `idea` plugins). Next,
+
+    $ ./gradlew eclipse
+
+Open Eclipse and import your projects. It's that simple.
+
 # Examples
 
 ## JNI
