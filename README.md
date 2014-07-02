@@ -6,7 +6,7 @@ this repository out could build the native projects without some strings
 attached (of course, some strings are always attached when it comes to native
 programming).
 
-# Basic Things That Might Make You Twitch
+# Things That May Make You Twitch
 
 ## Gradle Wrapper
 The Gradle wrapper is pretty slick. This is a self-contained distribution of
@@ -55,7 +55,7 @@ configuration is occurring in the build file located in the root project, I
 don't need to specify the first colon.
 
 # Setting Things Up
-If you haven't ran `./gradew` (or `gradlew.bat` on Windows) yet, then do so.
+If you haven't ran `./gradlew` (or `gradlew.bat` on Windows) yet, then do so.
 This will setup the Gradle wrapper for the repository.
 
 ## Defining Projects
