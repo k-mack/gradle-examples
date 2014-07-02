@@ -6,6 +6,9 @@ this repository out could build the native projects without some strings
 attached (of course, some strings are always attached when it comes to native
 programming).
 
+This is not a replacement for the [Gradle
+documentation](http://www.gradle.org/documentation).
+
 # Things That May Make You Twitch
 
 ## Groovy
