@@ -104,7 +104,7 @@ you just ran `./gradlew native:simple-c-lib-dependent:mainExecutable` you'll
 get a binary, but when you run it you'll get:
 
     $ native/simple-c-lib-dependent/build/binaries/mainExecutable/main
-    $ native/simple-c-lib-dependent/build/binaries/mainExecutable/main: error while loading shared libraries: libstringutils.so: cannot open shared object file: No such file or directory
+    native/simple-c-lib-dependent/build/binaries/mainExecutable/main: error while loading shared libraries: libstringutils.so: cannot open shared object file: No such file or directory
 
 You can update `LD_LIBRARY_PATH` and do the same above or just run the
 `installMainExecutable` task.
