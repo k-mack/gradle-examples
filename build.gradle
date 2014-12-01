@@ -1,5 +1,5 @@
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.0'
+  gradleVersion = '2.2.1'
 }
 
 project('jvm').subprojects {
@@ -80,6 +80,22 @@ project('jvm:jni') {
 
   apply plugin: 'c'
 
+  libraries {
+    jniPlatform {
+      baseName 'native'
+      targetPlatforms 'linux_amd64'
+    }
+    all {
+      binaries.all {
+        if (targetPlatform.operatingSystem.linux) {
+          cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
+          cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/linux"
+        }
+        cCompiler.args "-I${nativeHeadersDir}"
+      }
+    }
+  }
+
   sources {
     jniPlatform {
       c {
@@ -102,19 +118,4 @@ project('jvm:jni') {
     }
   }
 
-  libraries {
-    jniPlatform {
-      baseName 'native'
-      targetPlatforms 'linux_amd64'
-    }
-    all {
-      binaries.all {
-        if (targetPlatform.operatingSystem.linux) {
-          cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include"
-          cCompiler.args '-I', "${org.gradle.internal.jvm.Jvm.current().javaHome}/include/linux"
-        }
-        cCompiler.args "-I${nativeHeadersDir}"
-      }
-    }
-  }
 }
