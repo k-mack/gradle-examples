@@ -1,5 +1,5 @@
 task wrapper(type: Wrapper) {
-  gradleVersion = '2.0'
+  gradleVersion = '2.2.1'
 }
 
 project('jvm').subprojects {
@@ -80,28 +80,6 @@ project('jvm:jni') {
 
   apply plugin: 'c'
 
-  sources {
-    jniPlatform {
-      c {
-        source {
-          srcDirs 'src/main/c'
-          include '**/*.c' // Ignore .swp files (useful if using Vim, etc.)
-        }
-      }
-    }
-  }
-
-  jniPlatformCExtractHeaders.dependsOn nativeHeaders
-
-  model {
-    platforms {
-      linux_amd64 {
-        architecture 'amd64'
-        operatingSystem 'linux'
-      }
-    }
-  }
-
   libraries {
     jniPlatform {
       baseName 'native'
@@ -117,4 +95,25 @@ project('jvm:jni') {
       }
     }
   }
+
+  sources {
+    jniPlatform {
+      c {
+        source {
+          srcDirs 'src/main/c'
+          include '**/*.c' // Ignore .swp files (useful if using Vim, etc.)
+        }
+      }
+    }
+  }
+
+  model {
+    platforms {
+      linux_amd64 {
+        architecture 'amd64'
+        operatingSystem 'linux'
+      }
+    }
+  }
+  tasks.withType(CCompile) {task -> task.dependsOn nativeHeaders}
 }
