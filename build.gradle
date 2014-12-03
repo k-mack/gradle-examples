@@ -107,8 +107,6 @@ project('jvm:jni') {
     }
   }
 
-  jniPlatformCExtractHeaders.dependsOn nativeHeaders
-
   model {
     platforms {
       linux_amd64 {
@@ -117,5 +115,5 @@ project('jvm:jni') {
       }
     }
   }
-
+  tasks.withType(CCompile) {task -> task.dependsOn nativeHeaders}
 }
